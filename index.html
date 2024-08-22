@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Domestic and International Flights at the Lowest Airfare</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="script.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <div class="header-logo">
+          <a href="index.html" target="_self">
+            <img
+              src="https://www.goindigo.in/content/dam/s6web/in/en/assets/logo/IndiGo_logo_2x.png"
+              alt=""
+            />
+          </a>
+        </div>
+        <nav>
+          <div class="nav-book-item">
+            <span>Book</span><span>&#x2193;</span>
+          </div>
+          <div class="nav-trips-item">
+            <span>Trips</span><span>&#x2193;</span>
+          </div>
+          <div class="nav-rewards-item">
+            <span>6E Rewards</span>
+          </div>
+          <div class="nav-checkin-item">
+            <span>Check-in</span>
+          </div>
+        </nav>
+        <div class="header-login">
+          <button>Login<span>&#x2193;</span></button>
+        </div>
+      </div>
+    </header>
+    <div class="tagline">
+      <h1>Hi there, where would you like to <span>IndiGo</span> today?</h1>
+    </div>
+    <div class="display-errors"></div>
+    <div class="booking-form">
+      <div class="tabs">
+        <button class="tablinks active" onclick="openTab(event, 'flight')">
+          Book a flight
+        </button>
+        <button class="tablinks" onclick="openTab(event, 'hotel')">
+          Book a hotel
+        </button>
+      </div>
+      <form id="booking-form">
+        <div class="form-content">
+          <div class="trip-type">
+            <label>
+              <input type="radio" name="trip" value="one-way" checked /> One Way
+            </label>
+            <label>
+              <input type="radio" name="trip" value="round-trip" /> Round Trip
+            </label>
+            <label>
+              <input type="radio" name="trip" value="multi-city" /> Multi City
+            </label>
+          </div>
+          <div class="form-inputs">
+            <input type="text" id="from" placeholder="From" />
+            <input type="text" id="to" placeholder="To" />
+            <input type="date" id="departure" placeholder="Departure" />
+            <input type="date" id="return" placeholder="Return" />
+            <input
+              type="text"
+              id="special-fares"
+              placeholder="Travellers + Special Fares"
+            />
+          </div>
+          <div class="third-row">
+            <div class="travelling-for">
+              <label>I am travelling for</label>
+              <select id="travelling-for">
+                <option value="" selected>...........</option>
+                <option value="leisure">Leisure</option>
+                <option value="work">Work</option>
+                <option value="medical">Medical</option>
+              </select>
+            </div>
+            <div class="promo-code">
+              <a href="">+ADD PROMOCODE</a>
+            </div>
+            <button type="submit" class="search">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
