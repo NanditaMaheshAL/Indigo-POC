@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => { //function performed when dom is loaded
     const form = document.getElementById('booking-form');
     const errorDiv = document.querySelector('.display-errors');
+    const modal = document.getElementById('confirmation-modal');
+    const closeModal = document.querySelector('.modal .close');
+    const confirmSubmit = document.getElementById('confirm-submit');
+    const cancelSubmit = document.getElementById('cancel-submit');
     
     form.addEventListener('submit', (event) => { //function performed when form is submitted
       event.preventDefault(); //prevents default form behaviour(page reload)
@@ -55,9 +59,62 @@ document.addEventListener('DOMContentLoaded', () => { //function performed when 
         });
         errorDiv.appendChild(ul);
       } else {
-        // if no errors (error arr is empty), alert box 
-        alert("NO ERRORS!")
+        modal.style.display = 'block';
       }
+
+      closeModal.addEventListener('click', () => {
+        modal.style.display = 'none';
+        alert("Closed Modal.")
+      });
+    
+      cancelSubmit.addEventListener('click', () => {
+        modal.style.display = 'none';
+        alert("Cancelled submission.")
+      });
+    
+      confirmSubmit.addEventListener('click', () => {
+        form.submit(); // Submit the form
+        alert("Form submitted.")
+      });
+    
+      window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+          modal.style.display = 'none';
+        }
+      });  
+      // add all the elements inside modal which you want to make focusable
+      const focusableElements =
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+      const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
+      const focusableContent = modal.querySelectorAll(focusableElements);
+      const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+      document.addEventListener('keydown', function(e) {
+      let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
+      if (!isTabPressed) {
+      return;
+      }
+      if (e.shiftKey) { // if shift key pressed for shift + tab combination
+        if (document.activeElement === firstFocusableElement) {
+          lastFocusableElement.focus(); // add focus for the last focusable element
+          e.preventDefault();
+        }
+      } else { // if tab key is pressed
+      if (document.activeElement === lastFocusableElement) { // if focused has reached to last focusable element then focus first focusable element after pressing tab
+        firstFocusableElement.focus(); // add focus for the first focusable element
+        e.preventDefault();
+      }
+      }
+      });
+      firstFocusableElement.focus();   
+    });
+    const accordionButtons = document.querySelectorAll('.accordion-menu button');
+    accordionButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        button.setAttribute('aria-expanded', !expanded);
+        const menuId = button.getAttribute('aria-controls');
+        const menu = document.getElementById(menuId);
+        menu.style.display = expanded ? 'none' : 'block';
+      });
     });
   });
-  
