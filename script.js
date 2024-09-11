@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', () => { //function performed when 
     const form = document.getElementById('booking-form');
     const errorDiv = document.querySelector('.display-errors');
     const modal = document.getElementById('confirmation-modal');
-    const closeModal = document.querySelector('.modal .close');
     const confirmSubmit = document.getElementById('confirm-submit');
     const cancelSubmit = document.getElementById('cancel-submit');
     
@@ -10,13 +9,13 @@ document.addEventListener('DOMContentLoaded', () => { //function performed when 
       event.preventDefault(); //prevents default form behaviour(page reload)
       const errors = []; //array to store error messages
 
-      const from = document.getElementById('from').value.trim();
-      const to = document.getElementById('to').value.trim();
-      const specialFares = document.getElementById('special-fares').value.trim();
+      const from = document.getElementById('from-input').value.trim();
+      const to = document.getElementById('to-input').value.trim();
+      const specialFares = document.getElementById('special-fares-input').value.trim();
       const travellingFor = document.getElementById('travelling-for').value.trim();
 
-      const departureDateValue = document.getElementById('departure').value;
-      const returnDateValue = document.getElementById('return').value;
+      const departureDateValue = document.getElementById('departure-input').value;
+      const returnDateValue = document.getElementById('return-input').value;
       const departureDate = departureDateValue ? new Date(departureDateValue) : null; //if no date selected (no value), then null value assigned
       const returnDate = returnDateValue ? new Date(returnDateValue) : null; //if no date selected (no value), then null value assigned
   
@@ -61,11 +60,6 @@ document.addEventListener('DOMContentLoaded', () => { //function performed when 
       } else {
         modal.style.display = 'block';
       }
-
-      closeModal.addEventListener('click', () => {
-        modal.style.display = 'none';
-        alert("Closed Modal.")
-      });
     
       cancelSubmit.addEventListener('click', () => {
         modal.style.display = 'none';
@@ -84,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => { //function performed when 
       });  
       // add all the elements inside modal which you want to make focusable
       const focusableElements =
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]),h2,p';
       const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
       const focusableContent = modal.querySelectorAll(focusableElements);
       const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
