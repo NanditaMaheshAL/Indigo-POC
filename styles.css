@@ -34,25 +34,43 @@ body{
     width: 8em;
 }
 
-nav {
-    display: flex;
-    gap:5em;
+.header-logo a {
+    text-decoration: none;
+    padding: 0.5rem;
 }
 
-nav div {
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 5em;
+}
+
+nav li {
     display: flex;
     align-items: center;
-    font-family: 'Open Sans',sans-serif;
+    font-family: 'Open Sans', sans-serif;
     font-size: 0.9em;
-    font-weight: 20px;
     color: #00254f;
     cursor: pointer;
 }
 
-nav div span:nth-child(2) {
+nav li span:nth-child(2) {
     margin-left: 5px;
     font-size: 12px;
 }
+
+nav a{
+    text-decoration: none;
+    color: #000099;
+}
+
 
 .header-login button {
     display: flex;
@@ -143,12 +161,14 @@ h1{
 }
 
 .third-row {
-    display: flex;
+    display: inline-block;
     padding: 0 2rem;
 }
-
+.promo-code{
+    display: inline-block;
+}
 .promo-code a {
-    text-decoration: underline #00008b;
+    text-decoration: underline #000099;
     color: #000099;
 }
 .search {
@@ -158,7 +178,7 @@ h1{
     border-radius: 1.25rem;
     width: 100px;
     padding:10px;
-    margin-left: 40rem;
+    margin-left: 50rem;
 }
 .search:hover{
     cursor: pointer;
@@ -250,17 +270,6 @@ h1{
     border: 1px solid #888;
     width: 80%;
     border-radius: 5px;
-  }
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-  .close:hover, .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
   }
   .modal-button {
     background-color: #000099;
