@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     let focusableElements;
     let firstFocusableElement;
     let lastFocusableElement;
-    let nextElementAfterSearchButton;
 
     searchButton.addEventListener('click', (event) => {
         event.preventDefault();
@@ -54,9 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
             firstFocusableElement = modal.querySelectorAll(focusableElements)[0];
             const focusableContent = modal.querySelectorAll(focusableElements);
             lastFocusableElement = focusableContent[focusableContent.length - 1];
-            
-            // Find the next element after the search button
-            nextElementAfterSearchButton = searchButton.nextElementSibling;
 
             // Open the modal
             modal.style.display = 'block';
@@ -88,20 +84,12 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('keydown', handleKeydown);
         cancelSubmit.addEventListener('click', () => {
             modal.style.display = 'none';
-            if (nextElementAfterSearchButton) {
-                nextElementAfterSearchButton.focus();
-            }
         });
-
         confirmSubmit.addEventListener('click', () => {
             modal.style.display = 'none';
-            alert("Form submitted.");
-            if (nextElementAfterSearchButton) {
-                nextElementAfterSearchButton.focus();
-            }
         });
     });
-
+    searchButton.focus()
     // Handle accordion menu functionality
     const accordionButtons = document.querySelectorAll('.accordion-menu button');
     accordionButtons.forEach(button => {
