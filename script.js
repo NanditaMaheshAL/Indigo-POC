@@ -4,8 +4,9 @@ document.addEventListener('DOMContentLoaded', () => { //function performed when 
     const modal = document.getElementById('confirmation-modal');
     const confirmSubmit = document.getElementById('confirm-submit');
     const cancelSubmit = document.getElementById('cancel-submit');
+    const searchButton = document.getElementById('search-button')
     
-    form.addEventListener('submit', (event) => { //function performed when form is submitted
+    searchButton.addEventListener('click', (event) => { //function performed when form is submitted
       event.preventDefault(); //prevents default form behaviour(page reload)
       const errors = []; //array to store error messages
 
@@ -67,40 +68,31 @@ document.addEventListener('DOMContentLoaded', () => { //function performed when 
       });
     
       confirmSubmit.addEventListener('click', () => {
-        form.submit(); // Submit the form
+        modal.style.display = 'none';
         alert("Form submitted.")
-      });
-    
-      window.addEventListener('click', (event) => {
-        if (event.target === modal) {
-          modal.style.display = 'none';
-        }
-      });  
-      // add all the elements inside modal which you want to make focusable
-      const focusableElements =
-      'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"]),h2,p';
-      const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
-      const focusableContent = modal.querySelectorAll(focusableElements);
-      const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
-      document.addEventListener('keydown', function(e) {
-      let isTabPressed = e.key === 'Tab' || e.keyCode === 9;
-      if (!isTabPressed) {
-      return;
-      }
-      if (e.shiftKey) { // if shift key pressed for shift + tab combination
+      }); 
+    const focusableElements = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+    const firstFocusableElement = modal.querySelectorAll(focusableElements)[0]; // get first element to be focused inside modal
+    const focusableContent = modal.querySelectorAll(focusableElements);
+    const lastFocusableElement = focusableContent[focusableContent.length - 1]; // get last element to be focused inside modal
+    document.addEventListener('keydown', function(e) {
+    let isTabPressed = e.key === 'Tab'
+    if (!isTabPressed) {
+        return;
+    }
+    if (e.shiftKey) { // if shift key pressed for shift + tab combination
         if (document.activeElement === firstFocusableElement) {
-          lastFocusableElement.focus(); // add focus for the last focusable element
-          e.preventDefault();
+        lastFocusableElement.focus(); // add focus for the last focusable element
+        e.preventDefault();
         }
-      } else { // if tab key is pressed
-      if (document.activeElement === lastFocusableElement) { // if focused has reached to last focusable element then focus first focusable element after pressing tab
+    } else { // if tab key is pressed
+        if (document.activeElement === lastFocusableElement) { // if focused has reached to last focusable element then focus first focusable element after pressing tab
         firstFocusableElement.focus(); // add focus for the first focusable element
         e.preventDefault();
-      }
-      }
-      });
-      firstFocusableElement.focus();   
+        }
+    }
     });
+    firstFocusableElement.focus();
     const accordionButtons = document.querySelectorAll('.accordion-menu button');
     accordionButtons.forEach(button => {
       button.addEventListener('click', () => {
@@ -111,4 +103,5 @@ document.addEventListener('DOMContentLoaded', () => { //function performed when 
         menu.style.display = expanded ? 'none' : 'block';
       });
     });
-  });
+  })
+})
